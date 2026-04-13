@@ -5,15 +5,16 @@ interface Show {
   city: string;
   act: string;
   status: 'tickets' | 'soon';
+  url: string;
 }
 
 const shows: Show[] = [
-  { date: '2026-05-10', venue: 'Paradiso', city: 'Amsterdam', act: 'Sven Hammond Big Band', status: 'tickets' },
-  { date: '2026-05-24', venue: 'TivoliVredenburg', city: 'Utrecht', act: 'Sven Hammond', status: 'tickets' },
-  { date: '2026-06-07', venue: 'Theater Walhalla', city: 'Rotterdam', act: 'Na de Stilte (met Beatrice van der Poel)', status: 'tickets' },
-  { date: '2026-06-21', venue: 'Bimhuis', city: 'Amsterdam', act: 'Tim Eijmaal Trio', status: 'soon' },
-  { date: '2026-07-12', venue: 'North Sea Jazz Festival', city: 'Rotterdam', act: 'New Cool Collective ft. Tim Eijmaal', status: 'tickets' },
-  { date: '2026-09-05', venue: 'De Roode Bioscoop', city: 'Amsterdam', act: 'Na de Stilte (met Beatrice van der Poel)', status: 'tickets' },
+  { date: '2026-05-07', venue: 'TivoliVredenburg', city: 'Utrecht', act: 'Sven & Matthijs', status: 'tickets', url: 'https://www.tivolivredenburg.nl/agenda/94164511/sven-matthijs-07-05-2026' },
+  { date: '2026-05-10', venue: 'Paradiso', city: 'Amsterdam', act: 'Sven Hammond Big Band', status: 'tickets', url: 'https://www.paradiso.nl/programma/sven-hammond/118662' },
+  { date: '2026-06-07', venue: 'Theater Walhalla', city: 'Rotterdam', act: 'Na de Stilte (met Beatrice van der Poel)', status: 'tickets', url: 'https://www.theaterwalhalla.nl/voorstelling/beatrice-van-der-poel-na-de-stilte/' },
+  { date: '2026-06-21', venue: 'Bimhuis', city: 'Amsterdam', act: 'Tim Eijmaal Trio', status: 'soon', url: '' },
+  { date: '2026-07-12', venue: 'North Sea Jazz Festival', city: 'Rotterdam', act: 'New Cool Collective ft. Tim Eijmaal', status: 'tickets', url: 'https://www.northseajazz.com/en/tickets' },
+  { date: '2026-09-05', venue: 'De Roode Bioscoop', city: 'Amsterdam', act: 'Na de Stilte (met Beatrice van der Poel)', status: 'tickets', url: 'https://www.roodebioscoop.nl/beatrice-van-der-poel-na-de-stilte' },
 ];
 
 function formatDate(dateString: string): string {
@@ -45,8 +46,8 @@ function formatDate(dateString: string): string {
           </div>
           <div class="show-act">{show.act}</div>
           <div class="show-action">
-            {show.status === 'tickets' ? (
-              <a href="#" class="btn-warm">Tickets</a>
+            {show.status === 'tickets' && show.url ? (
+              <a href={show.url} target="_blank" rel="noopener" class="btn-warm">Tickets</a>
             ) : (
               <button class="btn-outline-warm" disabled>Binnenkort</button>
             )}
