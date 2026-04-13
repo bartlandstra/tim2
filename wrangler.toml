@@ -3,9 +3,6 @@ name = "tim-eijmaal"
 compatibility_date = "2024-09-23"
 pages_build_output_dir = "./dist"
 
-[build]
-command = "npm run build"
-
 # Optioneel: Cloudflare Functions voor contactformulier
 # [vars]
 # CONTACT_EMAIL = "tim@timeijmaal.nl"
