@@ -1,0 +1,54 @@
+backend:
+  name: github
+  repo: bartlandstra/tim2
+  branch: main
+  base_url: https://tim2.pages.dev
+  auth_endpoint: /api/auth
+
+# Waar bestanden worden opgeslagen
+media_folder: "public/images"
+public_folder: "/images"
+
+# Taal
+locale: "nl"
+
+# Slug settings
+slug:
+  encoding: "ascii"
+  clean_accents: true
+
+collections:
+  # ===== TOUR DATES =====
+  - name: "tourdates"
+    label: "Tour Dates"
+    label_singular: "Show"
+    description: "Beheer aankomende optredens. Voeg shows toe, bewerk ze, of verwijder ze."
+    file: "src/data/tourdates.json"
+    format: "json"
+    fields:
+      - name: "shows"
+        label: "Shows"
+        widget: "list"
+        label_singular: "Show"
+        summary: "{{fields.date}} — {{fields.venue}} ({{fields.city}})"
+        fields:
+          - { name: "date", label: "Datum", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD-MM-YYYY", time_format: false, hint: "Kies de datum van het optreden" }
+          - { name: "venue", label: "Locatie", widget: "string", hint: "Bijv. Paradiso, TivoliVredenburg" }
+          - { name: "city", label: "Stad", widget: "string", hint: "Bijv. Amsterdam, Utrecht" }
+          - { name: "act", label: "Act / Band", widget: "string", hint: "Bijv. Sven Hammond Big Band, Na de Stilte" }
+          - { name: "url", label: "Ticket URL", widget: "string", required: false, hint: "Link naar tickets. Laat leeg als er nog geen tickets zijn (toont 'Binnenkort')" }
+
+  # ===== SITE INSTELLINGEN =====
+  - name: "settings"
+    label: "Instellingen"
+    files:
+      - name: "site-info"
+        label: "Site Info"
+        file: "src/data/settings.json"
+        fields:
+          - { name: "siteTitle", label: "Site Titel", widget: "string", default: "Tim Eijmaal — Gitarist" }
+          - { name: "siteDescription", label: "Beschrijving", widget: "text", default: "Tim Eijmaal — Gitarist, session musician, producer." }
+          - { name: "contactEmail", label: "Contact E-mail", widget: "string", required: false }
+          - { name: "spotifyArtistId", label: "Spotify Artist ID", widget: "string", default: "7IzNdFP2dwZnMVswdhdD5M" }
+          - { name: "instagramUrl", label: "Instagram URL", widget: "string", default: "https://www.instagram.com/eijmaal/" }
+          - { name: "youtubeUrl", label: "YouTube URL", widget: "string", default: "https://www.youtube.com/results?search_query=Tim+Eijmaal" }

@@ -1,5 +1,6 @@
 ---
-import shows from '../data/tourdates.json';
+import data from '../data/tourdates.json';
+const shows = data.shows;
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString + 'T12:00:00');

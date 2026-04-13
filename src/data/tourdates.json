@@ -1,44 +1,46 @@
-[
-  {
-    "date": "2026-05-07",
-    "venue": "TivoliVredenburg",
-    "city": "Utrecht",
-    "act": "Sven & Matthijs",
-    "url": "https://www.tivolivredenburg.nl/agenda/94164511/sven-matthijs-07-05-2026"
-  },
-  {
-    "date": "2026-05-10",
-    "venue": "Paradiso",
-    "city": "Amsterdam",
-    "act": "Sven Hammond Big Band",
-    "url": "https://www.paradiso.nl/programma/sven-hammond/118662"
-  },
-  {
-    "date": "2026-06-07",
-    "venue": "Theater Walhalla",
-    "city": "Rotterdam",
-    "act": "Na de Stilte (met Beatrice van der Poel)",
-    "url": "https://www.theaterwalhalla.nl/voorstelling/beatrice-van-der-poel-na-de-stilte/"
-  },
-  {
-    "date": "2026-06-21",
-    "venue": "Bimhuis",
-    "city": "Amsterdam",
-    "act": "Tim Eijmaal Trio",
-    "url": ""
-  },
-  {
-    "date": "2026-07-12",
-    "venue": "North Sea Jazz Festival",
-    "city": "Rotterdam",
-    "act": "New Cool Collective ft. Tim Eijmaal",
-    "url": "https://www.northseajazz.com/en/tickets"
-  },
-  {
-    "date": "2026-09-05",
-    "venue": "De Roode Bioscoop",
-    "city": "Amsterdam",
-    "act": "Na de Stilte (met Beatrice van der Poel)",
-    "url": "https://www.roodebioscoop.nl/beatrice-van-der-poel-na-de-stilte"
-  }
-]
+{
+  "shows": [
+    {
+      "date": "2026-05-07",
+      "venue": "TivoliVredenburg",
+      "city": "Utrecht",
+      "act": "Sven & Matthijs",
+      "url": "https://www.tivolivredenburg.nl/agenda/94164511/sven-matthijs-07-05-2026"
+    },
+    {
+      "date": "2026-05-10",
+      "venue": "Paradiso",
+      "city": "Amsterdam",
+      "act": "Sven Hammond Big Band",
+      "url": "https://www.paradiso.nl/programma/sven-hammond/118662"
+    },
+    {
+      "date": "2026-06-07",
+      "venue": "Theater Walhalla",
+      "city": "Rotterdam",
+      "act": "Na de Stilte (met Beatrice van der Poel)",
+      "url": "https://www.theaterwalhalla.nl/voorstelling/beatrice-van-der-poel-na-de-stilte/"
+    },
+    {
+      "date": "2026-06-21",
+      "venue": "Bimhuis",
+      "city": "Amsterdam",
+      "act": "Tim Eijmaal Trio",
+      "url": ""
+    },
+    {
+      "date": "2026-07-12",
+      "venue": "North Sea Jazz Festival",
+      "city": "Rotterdam",
+      "act": "New Cool Collective ft. Tim Eijmaal",
+      "url": "https://www.northseajazz.com/en/tickets"
+    },
+    {
+      "date": "2026-09-05",
+      "venue": "De Roode Bioscoop",
+      "city": "Amsterdam",
+      "act": "Na de Stilte (met Beatrice van der Poel)",
+      "url": "https://www.roodebioscoop.nl/beatrice-van-der-poel-na-de-stilte"
+    }
+  ]
+}
