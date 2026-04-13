@@ -68,53 +68,53 @@ const socials = [
 
       <!-- Right: Contact Form -->
       <div class="contact-right">
-        <form name="contact" method="POST" class="contact-form" action="#">
+        <!--
+          WERKEND CONTACTFORMULIER via Web3Forms (gratis)
+          Stap 1: Ga naar https://web3forms.com/#start
+          Stap 2: Vul Tim's e-mailadres in → "Create Access Key"
+          Stap 3: Vervang YOUR_ACCESS_KEY hieronder
+        -->
+        <form id="contact-form" method="POST" action="https://api.web3forms.com/submit" class="contact-form">
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY" />
+          <input type="hidden" name="subject" value="Nieuw bericht via timeijmaal.nl" />
+          <input type="hidden" name="from_name" value="Tim Eijmaal Website" />
+          <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+
           <div class="form-group">
             <label for="name" class="form-label">Naam</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              class="form-input"
-            />
+            <input type="text" id="name" name="name" required class="form-input" placeholder="Je naam" />
           </div>
 
           <div class="form-group">
             <label for="email" class="form-label">E-mail</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              class="form-input"
-            />
+            <input type="email" id="email" name="email" required class="form-input" placeholder="je@email.nl" />
           </div>
 
           <div class="form-group">
-            <label for="subject" class="form-label">Onderwerp</label>
-            <select id="subject" name="subject" class="form-input">
-              <option value="">Selecteer een onderwerp</option>
-              <option value="booking">Booking & live</option>
-              <option value="session">Studio / session werk</option>
-              <option value="arrangement">Arrangement / productie</option>
-              <option value="lessons">Gitaarlessen</option>
-              <option value="other">Overig</option>
+            <label for="onderwerp" class="form-label">Onderwerp</label>
+            <select id="onderwerp" name="onderwerp" class="form-input">
+              <option value="Booking & live">Booking & live</option>
+              <option value="Studio / session werk">Studio / session werk</option>
+              <option value="Arrangement / productie">Arrangement / productie</option>
+              <option value="Gitaarlessen">Gitaarlessen</option>
+              <option value="Overig">Overig</option>
             </select>
           </div>
 
           <div class="form-group">
             <label for="message" class="form-label">Bericht</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="6"
-              required
-              class="form-input"
-            ></textarea>
+            <textarea id="message" name="message" rows="6" required class="form-input" placeholder="Schrijf hier je bericht..."></textarea>
           </div>
 
-          <button type="submit" class="btn-warm submit-btn">Verstuur bericht</button>
+          <button type="submit" id="submit-btn" class="btn-warm submit-btn">Verstuur bericht</button>
+
+          <div id="form-success" class="hidden" style="text-align: center; padding: 1rem; background: rgba(74, 90, 58, 0.2); border: 1px solid #4a5a3a; border-radius: 4px;">
+            <p style="color: #8cb369; font-family: var(--font-body); font-size: 0.9rem;">Bedankt! Je bericht is verstuurd. Tim neemt zo snel mogelijk contact op.</p>
+          </div>
+          <div id="form-error" class="hidden" style="text-align: center; padding: 1rem; background: rgba(107, 45, 62, 0.2); border: 1px solid #6b2d3e; border-radius: 4px;">
+            <p style="color: #d4727e; font-family: var(--font-body); font-size: 0.9rem;">Er ging iets mis. Probeer het opnieuw of stuur een e-mail.</p>
+          </div>
         </form>
       </div>
     </div>
@@ -261,3 +261,38 @@ const socials = [
     }
   }
 </style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const successMsg = document.getElementById('form-success');
+  const errorMsg = document.getElementById('form-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Versturen...';
+    successMsg?.classList.add('hidden');
+    errorMsg?.classList.add('hidden');
+
+    try {
+      const formData = new FormData(form);
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success) {
+        form.reset();
+        successMsg?.classList.remove('hidden');
+      } else {
+        errorMsg?.classList.remove('hidden');
+      }
+    } catch {
+      errorMsg?.classList.remove('hidden');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Verstuur bericht';
+    }
+  });
+</script>

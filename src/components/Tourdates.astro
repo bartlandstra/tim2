@@ -1,213 +1,128 @@
 ---
-interface Show {
-  date: string;
-  venue: string;
-  city: string;
-  act: string;
-  status: 'tickets' | 'soon';
-  url: string;
-}
-
-const shows: Show[] = [
-  { date: '2026-05-07', venue: 'TivoliVredenburg', city: 'Utrecht', act: 'Sven & Matthijs', status: 'tickets', url: 'https://www.tivolivredenburg.nl/agenda/94164511/sven-matthijs-07-05-2026' },
-  { date: '2026-05-10', venue: 'Paradiso', city: 'Amsterdam', act: 'Sven Hammond Big Band', status: 'tickets', url: 'https://www.paradiso.nl/programma/sven-hammond/118662' },
-  { date: '2026-06-07', venue: 'Theater Walhalla', city: 'Rotterdam', act: 'Na de Stilte (met Beatrice van der Poel)', status: 'tickets', url: 'https://www.theaterwalhalla.nl/voorstelling/beatrice-van-der-poel-na-de-stilte/' },
-  { date: '2026-06-21', venue: 'Bimhuis', city: 'Amsterdam', act: 'Tim Eijmaal Trio', status: 'soon', url: '' },
-  { date: '2026-07-12', venue: 'North Sea Jazz Festival', city: 'Rotterdam', act: 'New Cool Collective ft. Tim Eijmaal', status: 'tickets', url: 'https://www.northseajazz.com/en/tickets' },
-  { date: '2026-09-05', venue: 'De Roode Bioscoop', city: 'Amsterdam', act: 'Na de Stilte (met Beatrice van der Poel)', status: 'tickets', url: 'https://www.roodebioscoop.nl/beatrice-van-der-poel-na-de-stilte' },
-];
+import shows from '../data/tourdates.json';
 
 function formatDate(dateString: string): string {
-  const date = new Date(dateString + 'T00:00:00');
+  const date = new Date(dateString + 'T12:00:00');
   const dayNames = ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'];
   const monthNames = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
-
-  const dayName = dayNames[date.getDay()];
-  const day = date.getDate();
-  const month = monthNames[date.getMonth()];
-
-  return `${dayName} ${day} ${month}`;
+  return `${dayNames[date.getDay()]} ${date.getDate()} ${monthNames[date.getMonth()]}`;
 }
 ---
 
-<section id="tourdates" class="tourdates-section">
-  <div class="section-ornament">
-    <h2>Tourdates</h2>
-  </div>
+<section id="tourdates" class="py-24 md:py-32 px-6 md:px-12" style="background: var(--color-bg);">
+  <div class="max-w-4xl mx-auto">
+    <div class="section-ornament mb-8">
+      <span>Tourdates</span>
+    </div>
+    <h2 class="text-4xl md:text-5xl text-center mb-4" style="color: var(--color-cream); font-family: var(--font-display);">
+      Aankomende Shows
+    </h2>
+    <p class="text-center mb-16" style="color: var(--color-text-muted); font-family: var(--font-body);">
+      Bekijk waar Tim binnenkort speelt.
+    </p>
 
-  <div class="shows-container">
-    {shows.map((show, index) => (
-      <>
-        <div class="show-row">
-          <div class="show-date mono-label">{formatDate(show.date)}</div>
-          <div class="show-venue">
-            <div class="venue-name">{show.venue}</div>
-            <div class="venue-city">{show.city}</div>
+    <!-- No shows message -->
+    <div id="no-shows" class="hidden text-center py-16">
+      <p style="color: var(--color-text-muted); font-family: var(--font-body); font-size: 1.1rem;">
+        Er zijn momenteel geen geplande optredens.<br />
+        <a href="#contact" style="color: var(--color-accent); border-bottom: 1px solid var(--color-accent);">Neem contact op</a> voor boekingen.
+      </p>
+    </div>
+
+    <div id="shows-list" class="space-y-0">
+      {shows.map((show, index) => (
+        <div
+          class="show-row"
+          data-date={show.date}
+          style="display: grid; grid-template-columns: 140px 1fr auto; gap: 1.5rem; align-items: center; padding: 1.5rem 0;"
+        >
+          <!-- Date -->
+          <div class="mono-label" style="font-size: 0.8rem;">
+            {formatDate(show.date)}
           </div>
-          <div class="show-act">{show.act}</div>
-          <div class="show-action">
-            {show.status === 'tickets' && show.url ? (
-              <a href={show.url} target="_blank" rel="noopener" class="btn-warm">Tickets</a>
+
+          <!-- Venue & Act -->
+          <div>
+            <div style="font-family: var(--font-body); color: var(--color-text); font-weight: 600;">
+              {show.venue} <span style="color: var(--color-text-muted); font-weight: 400;">— {show.city}</span>
+            </div>
+            <div style="font-family: var(--font-body); color: var(--color-text-muted); font-size: 0.9rem; margin-top: 0.25rem;">
+              {show.act}
+            </div>
+          </div>
+
+          <!-- Ticket button -->
+          <div>
+            {show.url ? (
+              <a href={show.url} target="_blank" rel="noopener" class="btn-warm" style="padding: 0.6rem 1.5rem; font-size: 0.7rem;">
+                Tickets
+              </a>
             ) : (
-              <button class="btn-outline-warm" disabled>Binnenkort</button>
+              <span class="btn-outline-warm" style="padding: 0.6rem 1.5rem; font-size: 0.7rem; opacity: 0.6;">
+                Binnenkort
+              </span>
             )}
           </div>
         </div>
-        {index < shows.length - 1 && <div class="warm-divider"></div>}
-      </>
-    ))}
-  </div>
+      ))}
+    </div>
 
-  <div class="tourdates-cta">
-    <p>Bent u geïnteresseerd in een optreden? <a href="#contact">Neem contact op voor boeking</a></p>
+    <div class="warm-divider mt-8 mb-8"></div>
+
+    <div class="text-center">
+      <p style="color: var(--color-text-muted); font-family: var(--font-body); font-size: 0.95rem;">
+        Wil je Tim boeken voor jouw evenement?
+        <a href="#contact" style="color: var(--color-accent); border-bottom: 1px solid var(--color-accent-dim); transition: border-color 0.3s;">Neem contact op</a>
+      </p>
+    </div>
   </div>
 </section>
 
 <style>
-  .tourdates-section {
-    padding: 4rem 2rem;
-    background-color: var(--color-bg);
-    color: var(--color-text);
+  .show-row + .show-row {
+    border-top: 1px solid rgba(196, 113, 59, 0.12);
   }
 
-  .section-ornament h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem;
-    font-weight: 400;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: var(--color-accent);
+  .show-row:hover {
+    background: var(--color-surface);
+    margin: 0 -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 4px;
   }
 
-  .shows-container {
-    max-width: 900px;
-    margin: 0 auto 3rem;
-  }
-
-  .show-row {
-    display: grid;
-    grid-template-columns: 100px 1fr 1fr auto;
-    gap: 2rem;
-    align-items: center;
-    padding: 1.5rem 0;
-  }
-
-  .show-date {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--color-accent);
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .show-venue {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .venue-name {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 1rem;
-    color: var(--color-text);
-    font-weight: 600;
-  }
-
-  .venue-city {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 0.9rem;
-    color: var(--color-muted);
-  }
-
-  .show-act {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 0.95rem;
-    color: var(--color-text);
-    text-align: left;
-  }
-
-  .show-action {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .btn-warm {
-    display: inline-block;
-    padding: 0.7rem 1.5rem;
-    background-color: var(--color-accent);
-    color: var(--color-bg);
-    text-decoration: none;
-    font-family: 'Libre Baskerville', serif;
-    font-size: 0.9rem;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-  }
-
-  .btn-warm:hover {
-    opacity: 0.85;
-  }
-
-  .btn-outline-warm {
-    padding: 0.7rem 1.5rem;
-    background-color: transparent;
-    border: 2px solid var(--color-muted);
-    color: var(--color-muted);
-    font-family: 'Libre Baskerville', serif;
-    font-size: 0.9rem;
-    cursor: not-allowed;
-    opacity: 0.7;
-  }
-
-  .warm-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--color-muted), transparent);
-    margin: 1rem 0;
-  }
-
-  .tourdates-cta {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid var(--color-muted);
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .tourdates-cta p {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 1rem;
-    color: var(--color-text);
-  }
-
-  .tourdates-cta a {
-    color: var(--color-accent);
-    text-decoration: none;
-    border-bottom: 2px solid var(--color-accent);
-    transition: opacity 0.3s ease;
-  }
-
-  .tourdates-cta a:hover {
-    opacity: 0.8;
-  }
-
-  @media (max-width: 768px) {
+  @media (max-width: 640px) {
     .show-row {
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-      padding: 1.5rem 0;
-    }
-
-    .show-date {
-      font-size: 0.8rem;
-    }
-
-    .section-ornament h2 {
-      font-size: 2.2rem;
-    }
-
-    .show-action {
-      justify-content: flex-start;
+      grid-template-columns: 1fr !important;
+      gap: 0.5rem !important;
     }
   }
 </style>
+
+<script>
+  function hidePastShows() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const rows = document.querySelectorAll('.show-row');
+    let visibleCount = 0;
+
+    rows.forEach(row => {
+      const dateStr = (row as HTMLElement).dataset.date;
+      if (dateStr) {
+        const showDate = new Date(dateStr + 'T23:59:59');
+        if (showDate < today) {
+          (row as HTMLElement).style.display = 'none';
+        } else {
+          visibleCount++;
+        }
+      }
+    });
+
+    if (visibleCount === 0) {
+      document.getElementById('no-shows')?.classList.remove('hidden');
+      document.getElementById('shows-list')?.classList.add('hidden');
+    }
+  }
+
+  hidePastShows();
+</script>
