@@ -21,22 +21,24 @@ collections:
   # ===== TOUR DATES =====
   - name: "tourdates"
     label: "Tour Dates"
-    label_singular: "Show"
-    description: "Beheer aankomende optredens. Voeg shows toe, bewerk ze, of verwijder ze."
-    file: "src/data/tourdates.json"
-    format: "json"
-    fields:
+    description: "Beheer aankomende optredens."
+    files:
       - name: "shows"
         label: "Shows"
-        widget: "list"
-        label_singular: "Show"
-        summary: "{{fields.date}} — {{fields.venue}} ({{fields.city}})"
+        file: "src/data/tourdates.json"
+        format: "json"
         fields:
-          - { name: "date", label: "Datum", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD-MM-YYYY", time_format: false, hint: "Kies de datum van het optreden" }
-          - { name: "venue", label: "Locatie", widget: "string", hint: "Bijv. Paradiso, TivoliVredenburg" }
-          - { name: "city", label: "Stad", widget: "string", hint: "Bijv. Amsterdam, Utrecht" }
-          - { name: "act", label: "Act / Band", widget: "string", hint: "Bijv. Sven Hammond Big Band, Na de Stilte" }
-          - { name: "url", label: "Ticket URL", widget: "string", required: false, hint: "Link naar tickets. Laat leeg als er nog geen tickets zijn (toont 'Binnenkort')" }
+          - name: "shows"
+            label: "Shows"
+            widget: "list"
+            label_singular: "Show"
+            summary: "{{fields.date}} — {{fields.venue}} ({{fields.city}})"
+            fields:
+              - { name: "date", label: "Datum", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD-MM-YYYY", time_format: false, hint: "Kies de datum van het optreden" }
+              - { name: "venue", label: "Locatie", widget: "string", hint: "Bijv. Paradiso, TivoliVredenburg" }
+              - { name: "city", label: "Stad", widget: "string", hint: "Bijv. Amsterdam, Utrecht" }
+              - { name: "act", label: "Act / Band", widget: "string", hint: "Bijv. Sven Hammond Big Band, Na de Stilte" }
+              - { name: "url", label: "Ticket URL", widget: "string", required: false, hint: "Link naar tickets. Laat leeg = toont 'Binnenkort'" }
 
   # ===== SITE INSTELLINGEN =====
   - name: "settings"
