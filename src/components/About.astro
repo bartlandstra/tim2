@@ -1,66 +1,133 @@
 ---
 ---
 
-<section id="over" class="py-24 md:py-32 px-6 md:px-12">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-    <!-- Image -->
+<section id="over" class="py-24 md:py-32 px-6 md:px-12" style="background-color: var(--color-warm-bg);">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-start">
+    <!-- Image with vintage border accent -->
     <div class="relative">
-      <div class="aspect-[3/4] overflow-hidden">
+      <div class="vintage-photo aspect-[3/4] overflow-hidden relative">
         <img
           src="/images/tim-live.jpg"
           alt="Tim Eijmaal live op het podium"
-          class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+          class="w-full h-full object-cover"
           loading="lazy"
         />
       </div>
-      <!-- Decorative accent -->
-      <div class="absolute -bottom-4 -right-4 w-24 h-24 border-2" style="border-color: var(--color-accent);"></div>
+      <!-- Decorative warm border accent (subtle double-line style) -->
+      <div
+        class="absolute -bottom-6 -right-6 w-32 h-32 pointer-events-none"
+        style="border: 2px solid var(--color-accent); box-shadow: inset 0 0 0 1px var(--color-muted);"
+      ></div>
     </div>
 
-    <!-- Text -->
+    <!-- Text content -->
     <div>
-      <div class="section-line mb-6"></div>
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6">
-        Over <span style="color: var(--color-accent);">Tim</span>
+      <!-- Section ornament label -->
+      <div class="section-ornament mb-8">
+        <span
+          class="text-xs uppercase tracking-widest font-medium"
+          style="color: var(--color-accent); font-family: 'Space Mono', monospace;"
+        >
+          Over
+        </span>
+      </div>
+
+      <h2
+        class="text-4xl md:text-5xl font-light mb-8 leading-tight"
+        style="color: var(--color-cream); font-family: 'Cormorant Garamond', serif; font-weight: 300;"
+      >
+        Tim <span style="color: var(--color-accent);">Eijmaal</span>
       </h2>
 
-      <div class="space-y-4 leading-relaxed" style="color: var(--color-text-muted);">
+      <!-- Bio paragraphs -->
+      <div class="space-y-4 mb-8 leading-relaxed" style="color: var(--color-cream);">
         <p>
           Tim Eijmaal (1975) studeerde lichte muziek aan het Hilversums Conservatorium
-          — nu Conservatorium van Amsterdam — bij docenten als Wim Overgaauw, Jesse van Ruller,
-          Maarten van der Grinten en Martijn van Iterson.
+          — nu Conservatorium van Amsterdam — bij docenten als <strong>Wim Overgaauw</strong>, <strong>Jesse van Ruller</strong>,
+          <strong>Maarten van der Grinten</strong> en <strong>Martijn van Iterson</strong>. In 1995 won hij de
+          <strong>Krauthammer Jazzprijs</strong>.
         </p>
         <p>
           Sindsdien speelde en toerde hij met uiteenlopende artiesten en bands:
-          <strong class="text-white">Abel</strong>, <strong class="text-white">Auratones</strong>,
-          <strong class="text-white">New Cool Collective</strong> en sinds 2006 als vaste gitarist
-          van <strong class="text-white">Sven Hammond</strong>. Met de Sven Hammond Big Band was
-          hij de huisband van het TV-programma <em>Matthijs Gaat Door</em>.
+          <strong>Abel</strong>, <strong>Auratones</strong>,
+          <strong>New Cool Collective</strong> (als vervanger van Anton Goudsmit)
+          en sinds 2006 als vaste gitarist van <strong>Sven Hammond</strong>.
+          Met de Sven Hammond Big Band was hij de huisband van
+          <em>Matthijs Gaat Door</em> (BNNVARA).
         </p>
         <p>
           Als session-gitarist is Tim te horen op opnames van
-          <strong class="text-white">Ben Saunders</strong>,
-          <strong class="text-white">Matt Simons</strong>,
-          <strong class="text-white">Pete Philly</strong>,
-          <strong class="text-white">Shary-An</strong> en vele anderen.
-          Daarnaast arrangeerde en produceerde hij albums voor singer-songwriter
-          Beatrice van der Poel.
+          <strong>Ben Saunders</strong>,
+          <strong>Matt Simons</strong>,
+          <strong>Lange Frans & Baas B</strong>,
+          <strong>Jim</strong>, <strong>Maud</strong>,
+          <strong>Kim Hoorweg</strong> en vele anderen.
+          Daarnaast arrangeerde en produceerde hij voor singer-songwriter
+          Beatrice van der Poel en speelt hij met haar de theatertour <em>Na de Stilte</em>.
         </p>
       </div>
 
-      <!-- Stats -->
-      <div class="grid grid-cols-3 gap-6 mt-10 pt-10 border-t" style="border-color: var(--color-surface);">
+      <!-- Specialties tags -->
+      <div class="flex flex-wrap gap-2 mb-10">
+        {['Jazz', 'Blues', 'Soul', 'Pop', 'Rock', 'Funk', 'Latin', 'Fingerpicking', 'Slide guitar'].map(specialty => (
+          <span
+            class="text-xs uppercase tracking-wide px-3 py-2 border transition-colors duration-300 hover:bg-white/5"
+            style="border-color: var(--color-accent); color: var(--color-accent); font-family: 'Space Mono', monospace;"
+          >
+            {specialty}
+          </span>
+        ))}
+      </div>
+
+      <!-- Stats section -->
+      <div class="grid grid-cols-3 gap-6 py-8" style="border-top: 1px solid var(--color-surface); border-bottom: 1px solid var(--color-surface);">
         <div>
-          <div class="text-2xl md:text-3xl font-bold" style="color: var(--color-accent);">20+</div>
-          <div class="text-xs uppercase tracking-wide mt-1" style="color: var(--color-text-muted);">Jaar ervaring</div>
+          <div class="text-3xl md:text-4xl font-light" style="color: var(--color-accent); font-family: 'Cormorant Garamond', serif;">30+</div>
+          <div class="text-xs uppercase tracking-wide mt-2" style="color: var(--color-muted); font-family: 'Space Mono', monospace;">Jaar ervaring</div>
         </div>
         <div>
-          <div class="text-2xl md:text-3xl font-bold" style="color: var(--color-accent);">50+</div>
-          <div class="text-xs uppercase tracking-wide mt-1" style="color: var(--color-text-muted);">Albums & singles</div>
+          <div class="text-3xl md:text-4xl font-light" style="color: var(--color-accent); font-family: 'Cormorant Garamond', serif;">50+</div>
+          <div class="text-xs uppercase tracking-wide mt-2" style="color: var(--color-muted); font-family: 'Space Mono', monospace;">Albums & singles</div>
         </div>
         <div>
-          <div class="text-2xl md:text-3xl font-bold" style="color: var(--color-accent);">TV</div>
-          <div class="text-xs uppercase tracking-wide mt-1" style="color: var(--color-text-muted);">Matthijs Gaat Door</div>
+          <div class="text-3xl md:text-4xl font-light" style="color: var(--color-accent); font-family: 'Cormorant Garamond', serif;">TV</div>
+          <div class="text-xs uppercase tracking-wide mt-2" style="color: var(--color-muted); font-family: 'Space Mono', monospace;">Matthijs Gaat Door</div>
+        </div>
+      </div>
+
+      <!-- Timeline highlights -->
+      <div class="mt-10">
+        <h3
+          class="text-xs uppercase tracking-widest font-medium mb-8"
+          style="color: var(--color-accent); font-family: 'Space Mono', monospace; letter-spacing: 0.1em;"
+        >
+          Hoogtepunten
+        </h3>
+        <div class="space-y-4">
+          {[
+            { year: '1995', text: 'Krauthammer Jazzprijs' },
+            { year: '2000', text: 'NCC — North Sea Jazz, Lowlands, Pinkpop, Rockpalast' },
+            { year: '2006', text: 'Vaste gitarist Sven Hammond Soul' },
+            { year: '2008', text: 'NCC — tournee Midden-Oosten (Damascus Jazz Fest)' },
+            { year: '2010', text: 'Internationale tour Matt Simons' },
+            { year: '2019', text: 'Huisband Matthijs Gaat Door (BNNVARA)' },
+            { year: '2023', text: 'Theatertour "Na de Stilte" met Beatrice van der Poel' },
+          ].map(item => (
+            <div class="flex gap-4 items-start pb-3" style="border-bottom: 1px solid var(--color-surface);">
+              <span
+                class="shrink-0 text-sm font-semibold"
+                style="color: var(--color-accent); min-width: 3rem; font-family: 'Space Mono', monospace;"
+              >
+                {item.year}
+              </span>
+              <span
+                class="text-sm"
+                style="color: var(--color-cream);"
+              >
+                {item.text}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

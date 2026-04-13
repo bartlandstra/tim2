@@ -1,0 +1,212 @@
+---
+interface Show {
+  date: string;
+  venue: string;
+  city: string;
+  act: string;
+  status: 'tickets' | 'soon';
+}
+
+const shows: Show[] = [
+  { date: '2026-05-10', venue: 'Paradiso', city: 'Amsterdam', act: 'Sven Hammond Big Band', status: 'tickets' },
+  { date: '2026-05-24', venue: 'TivoliVredenburg', city: 'Utrecht', act: 'Sven Hammond', status: 'tickets' },
+  { date: '2026-06-07', venue: 'Theater Walhalla', city: 'Rotterdam', act: 'Na de Stilte (met Beatrice van der Poel)', status: 'tickets' },
+  { date: '2026-06-21', venue: 'Bimhuis', city: 'Amsterdam', act: 'Tim Eijmaal Trio', status: 'soon' },
+  { date: '2026-07-12', venue: 'North Sea Jazz Festival', city: 'Rotterdam', act: 'New Cool Collective ft. Tim Eijmaal', status: 'tickets' },
+  { date: '2026-09-05', venue: 'De Roode Bioscoop', city: 'Amsterdam', act: 'Na de Stilte (met Beatrice van der Poel)', status: 'tickets' },
+];
+
+function formatDate(dateString: string): string {
+  const date = new Date(dateString + 'T00:00:00');
+  const dayNames = ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'];
+  const monthNames = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
+
+  const dayName = dayNames[date.getDay()];
+  const day = date.getDate();
+  const month = monthNames[date.getMonth()];
+
+  return `${dayName} ${day} ${month}`;
+}
+---
+
+<section id="tourdates" class="tourdates-section">
+  <div class="section-ornament">
+    <h2>Tourdates</h2>
+  </div>
+
+  <div class="shows-container">
+    {shows.map((show, index) => (
+      <>
+        <div class="show-row">
+          <div class="show-date mono-label">{formatDate(show.date)}</div>
+          <div class="show-venue">
+            <div class="venue-name">{show.venue}</div>
+            <div class="venue-city">{show.city}</div>
+          </div>
+          <div class="show-act">{show.act}</div>
+          <div class="show-action">
+            {show.status === 'tickets' ? (
+              <a href="#" class="btn-warm">Tickets</a>
+            ) : (
+              <button class="btn-outline-warm" disabled>Binnenkort</button>
+            )}
+          </div>
+        </div>
+        {index < shows.length - 1 && <div class="warm-divider"></div>}
+      </>
+    ))}
+  </div>
+
+  <div class="tourdates-cta">
+    <p>Bent u geïnteresseerd in een optreden? <a href="#contact">Neem contact op voor boeking</a></p>
+  </div>
+</section>
+
+<style>
+  .tourdates-section {
+    padding: 4rem 2rem;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  .section-ornament h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--color-accent);
+  }
+
+  .shows-container {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+  }
+
+  .show-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.5rem 0;
+  }
+
+  .show-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .show-venue {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .venue-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem;
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .venue-city {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+  }
+
+  .show-act {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    text-align: left;
+  }
+
+  .show-action {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .btn-warm {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    text-decoration: none;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+
+  .btn-warm:hover {
+    opacity: 0.85;
+  }
+
+  .btn-outline-warm {
+    padding: 0.7rem 1.5rem;
+    background-color: transparent;
+    border: 2px solid var(--color-muted);
+    color: var(--color-muted);
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.9rem;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  .warm-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-muted), transparent);
+    margin: 1rem 0;
+  }
+
+  .tourdates-cta {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-muted);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .tourdates-cta p {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem;
+    color: var(--color-text);
+  }
+
+  .tourdates-cta a {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-accent);
+    transition: opacity 0.3s ease;
+  }
+
+  .tourdates-cta a:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    .show-row {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      padding: 1.5rem 0;
+    }
+
+    .show-date {
+      font-size: 0.8rem;
+    }
+
+    .section-ornament h2 {
+      font-size: 2.2rem;
+    }
+
+    .show-action {
+      justify-content: flex-start;
+    }
+  }
+</style>

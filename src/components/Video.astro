@@ -7,74 +7,285 @@ const videos = [
     description: 'Intieme akoestische sessie — jazzy en bluesy gitaarspel.',
   },
 ];
+
+const links = [
+  {
+    title: 'Dutch Grease',
+    subtitle: 'Met Tom Beek — Leiden Legends',
+    url: 'https://www.leidenlegends.nl/clips/tim-eijmaal-en-tom-beek-dutch-grease/',
+  },
+  {
+    title: '10th Anniversary Concert',
+    subtitle: 'Sven Hammond — Amazon Prime',
+    url: 'https://www.amazon.com/Sven-Hammond-10th-Anniversary-Concert/dp/B072W9YQZW',
+  },
+];
 ---
 
-<section id="video" class="py-24 md:py-32 px-6 md:px-12">
-  <div class="max-w-6xl mx-auto">
-    <div class="section-line mb-6"></div>
-    <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-      Video
-    </h2>
-    <p class="text-lg mb-12 max-w-xl" style="color: var(--color-text-muted);">
-      Bekijk Tim in actie — live, in de studio, en op televisie.
-    </p>
+<section id="video" class="warm-section animate-fade-in-up">
+  <div class="section-container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="section-ornament">◆</span>
+        Video
+      </h2>
+      <span class="mono-label">sessies & optredens</span>
+    </div>
 
     <!-- Featured video -->
-    <div class="mb-12">
-      {videos.map(video => (
-        <div class="card-hover">
-          <div class="relative aspect-video overflow-hidden rounded-lg" style="background: var(--color-surface);">
-            <iframe
-              src={`https://www.youtube.com/embed/${video.embedId}?rel=0`}
-              title={video.title}
-              class="absolute inset-0 w-full h-full"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              loading="lazy"
-            ></iframe>
+    <div class="featured-video-wrapper">
+      {
+        videos.map((video) => (
+          <div class="warm-card featured-video-card">
+            <div class="video-embed">
+              <iframe
+                src={`https://www.youtube.com/embed/${video.embedId}?rel=0`}
+                title={video.title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <div class="video-info">
+              <h3 class="video-title">{video.title}</h3>
+              <p class="video-subtitle">{video.subtitle}</p>
+              <p class="video-description">{video.description}</p>
+            </div>
           </div>
-          <div class="mt-4">
-            <h3 class="text-xl font-semibold">{video.title}</h3>
-            <p class="text-sm mt-1" style="color: var(--color-text-muted);">{video.description}</p>
-          </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
 
-    <!-- More video links -->
-    <div class="grid sm:grid-cols-2 gap-4">
-      <a
-        href="https://www.leidenlegends.nl/clips/tim-eijmaal-en-tom-beek-dutch-grease/"
-        target="_blank"
-        rel="noopener"
-        class="card-hover flex items-center gap-4 p-5 border transition-colors duration-300"
-        style="background: var(--color-surface); border-color: transparent;"
-      >
-        <div class="shrink-0 w-12 h-12 flex items-center justify-center rounded-full" style="background: var(--color-accent); color: var(--color-bg);">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        </div>
-        <div>
-          <div class="font-semibold">Dutch Grease</div>
-          <div class="text-sm" style="color: var(--color-text-muted);">Met Tom Beek — Leiden Legends</div>
-        </div>
-      </a>
-
-      <a
-        href="https://www.amazon.com/Sven-Hammond-10th-Anniversary-Concert/dp/B072W9YQZW"
-        target="_blank"
-        rel="noopener"
-        class="card-hover flex items-center gap-4 p-5 border transition-colors duration-300"
-        style="background: var(--color-surface); border-color: transparent;"
-      >
-        <div class="shrink-0 w-12 h-12 flex items-center justify-center rounded-full" style="background: var(--color-accent); color: var(--color-bg);">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        </div>
-        <div>
-          <div class="font-semibold">10th Anniversary Concert</div>
-          <div class="text-sm" style="color: var(--color-text-muted);">Sven Hammond — Amazon Prime</div>
-        </div>
-      </a>
+    <!-- Link cards -->
+    <div class="links-grid">
+      {
+        links.map((link) => (
+          <a href={link.url} target="_blank" rel="noopener noreferrer" class="warm-card link-card">
+            <div class="play-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="11" stroke="#c4713b" stroke-width="1.5"/>
+                <polygon points="9.5,7 9.5,17 16.5,12" fill="#c4713b"/>
+              </svg>
+            </div>
+            <div class="link-info">
+              <h4 class="link-title">{link.title}</h4>
+              <p class="link-subtitle">{link.subtitle}</p>
+            </div>
+          </a>
+        ))
+      }
     </div>
+
+    <div class="warm-divider"></div>
   </div>
 </section>
+
+<style>
+  .warm-section {
+    background-color: #1a1410;
+    color: #e8dcc8;
+    padding: 4rem 2rem;
+  }
+
+  .section-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #e8dcc8;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  .section-ornament {
+    color: #c4713b;
+    font-size: 1.2rem;
+  }
+
+  .mono-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #a89a82;
+    margin-left: auto;
+  }
+
+  .featured-video-wrapper {
+    margin-bottom: 3rem;
+  }
+
+  .warm-card {
+    background-color: #2a2319;
+    border: 1px solid #a89a82;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .warm-card:hover {
+    border-color: #c4713b;
+    box-shadow: 0 4px 12px rgba(196, 113, 59, 0.1);
+  }
+
+  .featured-video-card {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .video-info {
+    padding: 1.5rem;
+  }
+
+  .video-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: #c4713b;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .video-subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #a89a82;
+    margin: 0 0 0.75rem 0;
+  }
+
+  .video-description {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.95rem;
+    color: #a89a82;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .link-card {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .play-icon {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+  }
+
+  .play-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .link-info {
+    flex: 1;
+  }
+
+  .link-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: #c4713b;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .link-subtitle {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.9rem;
+    color: #a89a82;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .warm-divider {
+    margin-top: 3rem;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      #a89a82 20%,
+      #a89a82 80%,
+      transparent
+    );
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .warm-section {
+      padding: 2rem 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+    }
+
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .mono-label {
+      margin-left: 0;
+    }
+
+    .links-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

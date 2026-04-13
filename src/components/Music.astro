@@ -1,60 +1,391 @@
 ---
-const credits = [
-  { artist: 'Sven Hammond', role: 'Gitarist (sinds 2006)', highlight: true },
-  { artist: 'Abel', role: 'Gitarist', highlight: false },
-  { artist: 'New Cool Collective', role: 'Gitaar & tour', highlight: false },
-  { artist: 'Matt Simons', role: 'Tour-gitarist', highlight: false },
-  { artist: 'Ben Saunders', role: 'Session gitaar', highlight: false },
-  { artist: 'Beatrice van der Poel', role: 'Arrangement & productie', highlight: true },
-  { artist: 'Pete Philly', role: 'Session gitaar', highlight: false },
-  { artist: 'Thom Hoorweg', role: 'Gitaar (debut "Two Faced")', highlight: false },
-  { artist: 'Martijje', role: 'Gitaar (album "Zacht")', highlight: false },
-  { artist: 'Shary-An', role: 'Session gitaar', highlight: false },
+const bands = [
+  {
+    name: 'Sven Hammond',
+    description: 'Vaste gitarist sinds 2006, huisband Matthijs Gaat Door',
+    highlight: true,
+  },
+  {
+    name: 'New Cool Collective',
+    description: 'Vervanger Anton Goudsmit, North Sea Jazz / Lowlands / Pinkpop',
+    highlight: true,
+  },
+  {
+    name: 'Abel',
+    description: 'Gitarist',
+    highlight: false,
+  },
+  {
+    name: 'Beatrice van der Poel',
+    description: 'Arrangement / productie / theatertour "Na de Stilte"',
+    highlight: true,
+  },
+];
+
+const sessions = [
+  { artist: 'Matt Simons', role: 'Tour-gitarist internationale tour' },
+  { artist: 'Ben Saunders', role: 'Session gitaar' },
+  { artist: 'Jim', role: 'Session gitaar' },
+  { artist: 'Maud', role: 'Session gitaar' },
+  { artist: 'Wim Soutaer', role: 'Session gitaar' },
+  { artist: 'AliB', role: 'Session gitaar' },
+  { artist: 'Bart Wirtz', role: 'Session gitaar' },
+  { artist: 'Wild Bill', role: 'Session gitaar' },
+  { artist: 'Kim Hoorweg', role: 'Session gitaar' },
+  { artist: 'Pete Philly', role: 'Session gitaar' },
+  { artist: 'Shary-An', role: 'Session gitaar' },
+  { artist: 'Thom Hoorweg', role: 'Debut "Two Faced"' },
+  { artist: 'Martijje', role: 'Album "Zacht"' },
+  { artist: 'Lange Frans & Baas B', role: 'Hit: "Het Land Van"' },
+];
+
+const albums = [
+  {
+    title: 'Live @ Zwarte Ruiter',
+    artist: 'Sven Hammond Soul',
+    year: 2007,
+  },
+  {
+    title: 'Marmalade Sessions',
+    artist: 'Sven Hammond Soul',
+    year: 2009,
+  },
+  {
+    title: 'Spinnin Out',
+    artist: 'Sven Hammond Soul',
+    year: 2011,
+  },
+  {
+    title: 'Gotta Go',
+    artist: 'Sven Hammond Soul',
+    year: 2013,
+  },
+  {
+    title: 'Heelhuids',
+    artist: 'Beatrice van der Poel',
+    year: 2018,
+  },
+  {
+    title: 'Two Faced',
+    artist: 'Thom Hoorweg',
+    year: null,
+  },
+  {
+    title: 'Zacht',
+    artist: 'Martijje',
+    year: null,
+  },
 ];
 ---
 
-<section id="muziek" class="py-24 md:py-32 px-6 md:px-12" style="background: var(--color-surface);">
-  <div class="max-w-6xl mx-auto">
-    <div class="section-line mb-6"></div>
-    <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-      Muziek & <span style="color: var(--color-accent);">Credits</span>
-    </h2>
-    <p class="text-lg mb-12 max-w-xl" style="color: var(--color-text-muted);">
-      Van jazz en blues tot pop en soul — Tim speelt het allemaal.
-    </p>
-
+<section id="muziek" class="warm-section animate-fade-in-up">
+  <div class="section-container">
     <!-- Spotify Embed -->
-    <div class="mb-16">
-      <h3 class="text-sm uppercase tracking-widest mb-4" style="color: var(--color-accent);">Luister op Spotify</h3>
-      <div class="rounded-lg overflow-hidden" style="background: var(--color-bg);">
-        <iframe
-          style="border-radius:12px"
-          src="https://open.spotify.com/embed/artist/7IzNdFP2dwZnMVswdhdD5M?utm_source=generator&theme=0"
-          width="100%"
-          height="352"
-          frameBorder="0"
-          allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-        ></iframe>
-      </div>
+    <div class="spotify-container">
+      <iframe
+        style="border-radius: 12px; border: 2px solid #c4713b;"
+        src="https://open.spotify.com/embed/artist/7IzNdFP2dwZnMVswdhdD5M?utm_source=generator&theme=0"
+        width="100%"
+        height="232"
+        frameBorder="0"
+        allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"></iframe>
     </div>
 
-    <!-- Credits Grid -->
-    <h3 class="text-sm uppercase tracking-widest mb-6" style="color: var(--color-accent);">Samenwerkingen & Credits</h3>
-    <div id="samenwerkingen" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {credits.map(credit => (
-        <div
-          class="card-hover p-5 border transition-colors duration-300"
-          style={`
-            background: var(--color-bg);
-            border-color: ${credit.highlight ? 'var(--color-accent-dim)' : 'var(--color-surface)'};
-          `}
-        >
-          <div class="font-semibold text-white text-lg">{credit.artist}</div>
-          <div class="text-sm mt-1" style="color: var(--color-text-muted);">{credit.role}</div>
-        </div>
-      ))}
+    <!-- Bands & Vaste Projecten -->
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="section-ornament">◆</span>
+        Bands & Vaste Projecten
+      </h2>
+      <span class="mono-label">gitarist</span>
     </div>
+
+    <div class="cards-grid">
+      {
+        bands.map((band) => (
+          <div
+            class={`warm-card ${band.highlight ? 'highlight' : ''}`}
+            style={
+              band.highlight
+                ? 'border-color: #c4713b; border-width: 2px;'
+                : ''
+            }
+          >
+            <h3 class="card-title">{band.name}</h3>
+            <p class="card-description">{band.description}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Sessions & Studio Credits -->
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="section-ornament">◆</span>
+        Session & Studio Credits
+      </h2>
+      <span class="mono-label">medewerking</span>
+    </div>
+
+    <div class="sessions-grid">
+      {
+        sessions.map((session) => (
+          <div class="warm-card session-card">
+            <h4 class="session-artist">{session.artist}</h4>
+            <p class="session-role">{session.role}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Discografie -->
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="section-ornament">◆</span>
+        Discografie
+      </h2>
+      <span class="mono-label">albums</span>
+    </div>
+
+    <div class="discography-list">
+      {
+        albums.map((album) => (
+          <div class="album-item">
+            <svg class="vinyl-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke="#c4713b" stroke-width="1.5"/>
+              <circle cx="12" cy="12" r="6" fill="#c4713b" opacity="0.3"/>
+              <circle cx="12" cy="12" r="2" fill="#c4713b"/>
+            </svg>
+            <div class="album-info">
+              <h4 class="album-title">{album.title}</h4>
+              <p class="album-artist">{album.artist}</p>
+              {album.year && <p class="album-year">{album.year}</p>}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="warm-divider"></div>
   </div>
 </section>
+
+<style>
+  .warm-section {
+    background-color: #1a1410;
+    color: #e8dcc8;
+    padding: 4rem 2rem;
+  }
+
+  .section-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .spotify-container {
+    margin-bottom: 4rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #e8dcc8;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  .section-ornament {
+    color: #c4713b;
+    font-size: 1.2rem;
+  }
+
+  .mono-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #a89a82;
+    margin-left: auto;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .warm-card {
+    background-color: #2a2319;
+    border: 1px solid #a89a82;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .warm-card:hover {
+    border-color: #c4713b;
+    box-shadow: 0 4px 12px rgba(196, 113, 59, 0.1);
+  }
+
+  .warm-card.highlight {
+    background-color: rgba(196, 113, 59, 0.08);
+  }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: #c4713b;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .card-description {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.95rem;
+    color: #a89a82;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .sessions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .session-card {
+    padding: 1rem;
+    background-color: #2a2319;
+    border: 1px solid #a89a82;
+    border-radius: 6px;
+  }
+
+  .session-artist {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: #c4713b;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .session-role {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.85rem;
+    color: #a89a82;
+    margin: 0;
+  }
+
+  .discography-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .album-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.25rem;
+    background-color: rgba(42, 35, 25, 0.6);
+    border-left: 3px solid #c4713b;
+    border-radius: 4px;
+  }
+
+  .vinyl-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+
+  .album-info {
+    flex: 1;
+  }
+
+  .album-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: #c4713b;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .album-artist {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.95rem;
+    color: #a89a82;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .album-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: #a89a82;
+    margin: 0;
+  }
+
+  .warm-divider {
+    margin-top: 3rem;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      #a89a82 20%,
+      #a89a82 80%,
+      transparent
+    );
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .warm-section {
+      padding: 2rem 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+    }
+
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sessions-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .album-item {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .vinyl-icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+</style>

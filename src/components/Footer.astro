@@ -2,19 +2,82 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="py-8 px-6 md:px-12 border-t" style="border-color: var(--color-surface);">
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-    <div class="text-sm" style="color: var(--color-text-muted);">
-      &copy; {year} Tim Eijmaal. Alle rechten voorbehouden.
-    </div>
-    <div class="flex items-center gap-6">
-      <a href="#" class="text-sm transition-colors duration-300 hover:text-[var(--color-accent)]" style="color: var(--color-text-muted);">
-        Privacy
-      </a>
-      <span style="color: var(--color-surface);">|</span>
-      <a href="#" class="text-sm transition-colors duration-300 hover:text-[var(--color-accent)]" style="color: var(--color-text-muted);">
-        Colofon
-      </a>
+<footer class="footer">
+  <div class="warm-divider"></div>
+  <div class="footer-container">
+    <div class="footer-content">
+      <p class="copyright">
+        &copy; {year} Tim Eijmaal
+      </p>
+      <div class="footer-links">
+        <a href="#" class="footer-link">Privacy</a>
+        <span class="footer-divider">|</span>
+        <a href="#" class="footer-link">Colofon</a>
+      </div>
     </div>
   </div>
 </footer>
+
+<style>
+  .footer {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    padding: 2rem;
+  }
+
+  .warm-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-muted), transparent);
+    margin-bottom: 2rem;
+  }
+
+  .footer-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .copyright {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footer-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-link:hover {
+    color: var(--color-accent);
+  }
+
+  .footer-divider {
+    color: var(--color-muted);
+    opacity: 0.5;
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      gap: 0.5rem;
+    }
+  }
+</style>
