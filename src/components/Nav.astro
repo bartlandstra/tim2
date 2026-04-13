@@ -1,0 +1,104 @@
+---
+const links = [
+  { label: 'Over', href: '#over' },
+  { label: 'Muziek', href: '#muziek' },
+  { label: 'Video', href: '#video' },
+  { label: 'Samenwerkingen', href: '#samenwerkingen' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo / Name -->
+    <a href="#" class="text-lg font-semibold tracking-wide" style="color: var(--color-accent);">
+      Tim Eijmaal
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8">
+      {links.map(link => (
+        <a
+          href={link.href}
+          class="text-sm tracking-wide uppercase transition-colors duration-300 hover:text-[var(--color-accent)]"
+          style="color: var(--color-text-muted);"
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <!-- Mobile menu button -->
+    <button
+      id="menu-toggle"
+      class="md:hidden flex flex-col gap-1.5 p-2"
+      aria-label="Menu"
+    >
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-300" id="bar1"></span>
+      <span class="block w-6 h-0.5 bg-white transition-opacity duration-300" id="bar2"></span>
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-300" id="bar3"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden" style="background: rgba(10,10,10,0.97);">
+    <div class="px-6 py-8 flex flex-col gap-6">
+      {links.map(link => (
+        <a
+          href={link.href}
+          class="mobile-link text-lg tracking-wide uppercase transition-colors duration-300 hover:text-[var(--color-accent)]"
+          style="color: var(--color-text-muted);"
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Navbar scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      nav?.classList.add('nav-blur');
+      nav!.style.background = 'rgba(10,10,10,0.85)';
+    } else {
+      nav?.classList.remove('nav-blur');
+      nav!.style.background = 'transparent';
+    }
+  });
+
+  // Mobile menu toggle
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+  let open = false;
+
+  toggle?.addEventListener('click', () => {
+    open = !open;
+    menu?.classList.toggle('hidden');
+    if (open) {
+      bar1!.style.transform = 'rotate(45deg) translate(4px, 4px)';
+      bar2!.style.opacity = '0';
+      bar3!.style.transform = 'rotate(-45deg) translate(4px, -4px)';
+    } else {
+      bar1!.style.transform = '';
+      bar2!.style.opacity = '1';
+      bar3!.style.transform = '';
+    }
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+      open = false;
+      bar1!.style.transform = '';
+      bar2!.style.opacity = '1';
+      bar3!.style.transform = '';
+    });
+  });
+</script>

@@ -1,0 +1,80 @@
+---
+const videos = [
+  {
+    title: 'Beatrice van der Poel & Tim Eijmaal',
+    subtitle: '1,5 Meter Sessie',
+    embedId: 'HjjZ8pQproQ',
+    description: 'Intieme akoestische sessie — jazzy en bluesy gitaarspel.',
+  },
+];
+---
+
+<section id="video" class="py-24 md:py-32 px-6 md:px-12">
+  <div class="max-w-6xl mx-auto">
+    <div class="section-line mb-6"></div>
+    <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+      Video
+    </h2>
+    <p class="text-lg mb-12 max-w-xl" style="color: var(--color-text-muted);">
+      Bekijk Tim in actie — live, in de studio, en op televisie.
+    </p>
+
+    <!-- Featured video -->
+    <div class="mb-12">
+      {videos.map(video => (
+        <div class="card-hover">
+          <div class="relative aspect-video overflow-hidden rounded-lg" style="background: var(--color-surface);">
+            <iframe
+              src={`https://www.youtube.com/embed/${video.embedId}?rel=0`}
+              title={video.title}
+              class="absolute inset-0 w-full h-full"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="mt-4">
+            <h3 class="text-xl font-semibold">{video.title}</h3>
+            <p class="text-sm mt-1" style="color: var(--color-text-muted);">{video.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- More video links -->
+    <div class="grid sm:grid-cols-2 gap-4">
+      <a
+        href="https://www.leidenlegends.nl/clips/tim-eijmaal-en-tom-beek-dutch-grease/"
+        target="_blank"
+        rel="noopener"
+        class="card-hover flex items-center gap-4 p-5 border transition-colors duration-300"
+        style="background: var(--color-surface); border-color: transparent;"
+      >
+        <div class="shrink-0 w-12 h-12 flex items-center justify-center rounded-full" style="background: var(--color-accent); color: var(--color-bg);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <div>
+          <div class="font-semibold">Dutch Grease</div>
+          <div class="text-sm" style="color: var(--color-text-muted);">Met Tom Beek — Leiden Legends</div>
+        </div>
+      </a>
+
+      <a
+        href="https://www.amazon.com/Sven-Hammond-10th-Anniversary-Concert/dp/B072W9YQZW"
+        target="_blank"
+        rel="noopener"
+        class="card-hover flex items-center gap-4 p-5 border transition-colors duration-300"
+        style="background: var(--color-surface); border-color: transparent;"
+      >
+        <div class="shrink-0 w-12 h-12 flex items-center justify-center rounded-full" style="background: var(--color-accent); color: var(--color-bg);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <div>
+          <div class="font-semibold">10th Anniversary Concert</div>
+          <div class="text-sm" style="color: var(--color-text-muted);">Sven Hammond — Amazon Prime</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

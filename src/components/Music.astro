@@ -1,0 +1,60 @@
+---
+const credits = [
+  { artist: 'Sven Hammond', role: 'Gitarist (sinds 2006)', highlight: true },
+  { artist: 'Abel', role: 'Gitarist', highlight: false },
+  { artist: 'New Cool Collective', role: 'Gitaar & tour', highlight: false },
+  { artist: 'Matt Simons', role: 'Tour-gitarist', highlight: false },
+  { artist: 'Ben Saunders', role: 'Session gitaar', highlight: false },
+  { artist: 'Beatrice van der Poel', role: 'Arrangement & productie', highlight: true },
+  { artist: 'Pete Philly', role: 'Session gitaar', highlight: false },
+  { artist: 'Thom Hoorweg', role: 'Gitaar (debut "Two Faced")', highlight: false },
+  { artist: 'Martijje', role: 'Gitaar (album "Zacht")', highlight: false },
+  { artist: 'Shary-An', role: 'Session gitaar', highlight: false },
+];
+---
+
+<section id="muziek" class="py-24 md:py-32 px-6 md:px-12" style="background: var(--color-surface);">
+  <div class="max-w-6xl mx-auto">
+    <div class="section-line mb-6"></div>
+    <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+      Muziek & <span style="color: var(--color-accent);">Credits</span>
+    </h2>
+    <p class="text-lg mb-12 max-w-xl" style="color: var(--color-text-muted);">
+      Van jazz en blues tot pop en soul — Tim speelt het allemaal.
+    </p>
+
+    <!-- Spotify Embed -->
+    <div class="mb-16">
+      <h3 class="text-sm uppercase tracking-widest mb-4" style="color: var(--color-accent);">Luister op Spotify</h3>
+      <div class="rounded-lg overflow-hidden" style="background: var(--color-bg);">
+        <iframe
+          style="border-radius:12px"
+          src="https://open.spotify.com/embed/artist/7IzNdFP2dwZnMVswdhdD5M?utm_source=generator&theme=0"
+          width="100%"
+          height="352"
+          frameBorder="0"
+          allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- Credits Grid -->
+    <h3 class="text-sm uppercase tracking-widest mb-6" style="color: var(--color-accent);">Samenwerkingen & Credits</h3>
+    <div id="samenwerkingen" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {credits.map(credit => (
+        <div
+          class="card-hover p-5 border transition-colors duration-300"
+          style={`
+            background: var(--color-bg);
+            border-color: ${credit.highlight ? 'var(--color-accent-dim)' : 'var(--color-surface)'};
+          `}
+        >
+          <div class="font-semibold text-white text-lg">{credit.artist}</div>
+          <div class="text-sm mt-1" style="color: var(--color-text-muted);">{credit.role}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
